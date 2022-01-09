@@ -1,4 +1,3 @@
-const User = require('../model/User');
 const auth = require('../utils/auth');
 const userService = require('../services/userService');
 
