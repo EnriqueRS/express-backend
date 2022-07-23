@@ -1,4 +1,4 @@
-const toDoService = require('../../services/toDoService');
+const toDoService = require('../services/toDoService');
 
 const getAllToDos = (req, res) => {
     const allToDos = toDoService.getAllToDos();
