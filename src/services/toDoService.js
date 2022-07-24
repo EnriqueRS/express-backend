@@ -1,7 +1,8 @@
 var ToDo = require('../model/ToDo');
 
 const getAllToDos = () => {
-    return;
+    const allToDos = ToDo.find({});
+    return allToDos;
 }
 
 const getToDoById = () => {

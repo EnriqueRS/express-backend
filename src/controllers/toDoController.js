@@ -2,7 +2,11 @@ const toDoService = require('../services/toDoService');
 
 const getAllToDos = (req, res) => {
     const allToDos = toDoService.getAllToDos();
-    res.send("Get all ToDos");
+    allToDos.then(todos => {
+        res.send(todos);
+    }).catch(err => {
+        console.log(err);
+    });
 };
 
 const getToDoById = (req, res) => {
