@@ -1,22 +1,15 @@
 var ToDo = require('../model/ToDo');
 
-const getAllToDos = () => {
-    return ToDo.find({});
+async function getAllToDos () {
+    return await ToDo.find({});
 }
 
-// const getToDoById = (toDoId) => {
 async function getToDoById (toDoId) {
-    return await ToDo.findById(toDoId);
-
-    // ToDo.findOne({'id': toDoId}).then(todo => {
-    //     console.log('service');
-    //     console.log(todo);
-    //     return todo;
-    // }).catch(err => {
-    //     throw new Error(err);
-    // });
-
-    // return ToDo.findOne({'id': toDoId});
+    const toDo = await ToDo.findOne({'id': toDoId});
+    if( toDo == null ) {
+        throw new Error('ToDo not found');
+    }
+    return toDo;
 }
 
 async function createToDo (request) {
@@ -35,12 +28,22 @@ async function createToDo (request) {
     return await ToDo.create(newToDo);
 }
 
-const updateToDo = () => {
-    return;
+async function updateToDo (toDoId, req) {
+    let toDo = await getToDoById(toDoId);
+    if( req.title != toDo.title ) {
+        toDo.title = req.title;
+    }
+    if( req.date != toDo.date ) {
+        toDo.date = req.date;
+    }
+    if( req.done != toDo.done ) {
+        toDo.done = req.done;
+    }
+    return await ToDo.updateOne({'id': toDo.id}, {$set: toDo});
 }
 
-const deleteToDo = () => {
-    return;
+async function deleteToDo (toDoId) {
+    return await ToDo.deleteOne({'id': toDoId});
 }
 
 module.exports = {
