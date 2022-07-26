@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 
 var toDoSchema = new Schema({
@@ -7,5 +8,7 @@ var toDoSchema = new Schema({
     date: Date,
     done: Boolean
 });
+
+toDoSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 module.exports = mongoose.model('ToDo', toDoSchema);
