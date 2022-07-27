@@ -1,23 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { default: mongoose } = require('mongoose');
-const v1ToDoRouter = require('./v1/routes/toDoRoutes');
-const v1LoginRouter = require('./v1/routes/loginRoutes');
-const v1UserRouter = require('./v1/routes/userRoutes');
+
+const API_VERSION = process.env.API_VERSION || 'v1'
+const toDoRouter = require(`./${API_VERSION}/routes/toDoRoutes`);
+const loginRouter = require(`./${API_VERSION}/routes/loginRoutes`);
+const userRouter = require(`./${API_VERSION}/routes/userRoutes`);
 
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 3000
-const API_VERSION = process.env.API_VERSION || 'v1'
 
 app.use(function (req, res, next) {
     next();
 });
 
 app.use(bodyParser.json());
-app.use('/api/v1/todo', v1ToDoRouter);
-app.use('/api/v1/login', v1LoginRouter);
-app.use('/api/v1/user', v1UserRouter);
+app.use(`/api/${API_VERSION}/todo`, toDoRouter);
+app.use(`/api/${API_VERSION}/login`, loginRouter);
+app.use(`/api/${API_VERSION}/user`, userRouter);
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
