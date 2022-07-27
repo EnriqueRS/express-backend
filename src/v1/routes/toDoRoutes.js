@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const toDoController = require('../../controllers/crudController');
 const toDoController = require('../../controllers/crudController');
 const toDoService = require('../../services/toDoService');
 toDoController.setService(toDoService);
