@@ -1,10 +1,10 @@
 var ToDo = require('../model/ToDo');
 
-async function getAllToDos () {
+async function getAll () {
     return await ToDo.find({});
 }
 
-async function getToDoById (toDoId) {
+async function getById (toDoId) {
     const toDo = await ToDo.findOne({'id': toDoId});
     if( toDo == null ) {
         throw new Error('ToDo not found');
@@ -12,7 +12,7 @@ async function getToDoById (toDoId) {
     return toDo;
 }
 
-async function createToDo (request) {
+async function create (request) {
     if( request == null ||
         request.title == null || 
         request.date == null || 
@@ -28,8 +28,8 @@ async function createToDo (request) {
     return await ToDo.create(newToDo);
 }
 
-async function updateToDo (toDoId, req) {
-    let toDo = await getToDoById(toDoId);
+async function update (toDoId, req) {
+    let toDo = await getById(toDoId);
     if( req.title != toDo.title ) {
         toDo.title = req.title;
     }
@@ -42,14 +42,14 @@ async function updateToDo (toDoId, req) {
     return await ToDo.updateOne({'id': toDo.id}, {$set: toDo});
 }
 
-async function deleteToDo (toDoId) {
+async function deleteById (toDoId) {
     return await ToDo.deleteOne({'id': toDoId});
 }
 
 module.exports = {
-    getAllToDos,
-    getToDoById,
-    createToDo,
-    updateToDo,
-    deleteToDo
+    getAll,
+    getById,
+    create,
+    update,
+    deleteById
 }
