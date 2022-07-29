@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 
 function getAccessToken(user) {
+    console.log(user.idUser);
 return jwt.sign(
     { 
         username: user.username,
