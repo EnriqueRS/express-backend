@@ -1,24 +1,16 @@
 const User = require('../model/User');
-const Auth = require('../utils/auth');
+const auth = require('../utils/auth');
+const userService = require('../services/userService');
 
 async function getAccessToken (username, password) {
-    const user = await getUser(username, password);
-
-    if (user) {
-        const accessToken = Auth.getAccessToken(user);
-        return accessToken;
+    const user = await userService.getUser(username);
+    if (user && auth.comparePassword(password, user.password)) {
+        return auth.getAccessToken(user);
     } else {
         throw new Error('Invalid username or password');
     }
 }
 
-async function getUser (username, password) {
-    return await User.findOne({
-        'username': username,
-        'password': password});
-}
-
 module.exports = {
-    getAccessToken,
-    getUser
+    getAccessToken
 }
