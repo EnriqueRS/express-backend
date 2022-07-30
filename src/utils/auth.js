@@ -3,9 +3,11 @@ const bcrypt = require('bcrypt');
 
 
 function getAccessToken(user) {
+    console.log(user.idUser);
 return jwt.sign(
     { 
-        username: user.username, 
+        username: user.username,
+        id: user.idUser, 
         role: user.role 
     }, process.env.JWT_SECRET, { expiresIn: '6h' });
 }
