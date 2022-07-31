@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const { default: mongoose } = require('mongoose');
 
 const API_VERSION = process.env.API_VERSION || 'v1'
+const verifyToken = require('./utils/verifyToken');
 const toDoRouter = require(`./${API_VERSION}/routes/toDoRoutes`);
 const loginRouter = require(`./${API_VERSION}/routes/loginRoutes`);
 const userRouter = require(`./${API_VERSION}/routes/userRoutes`);
@@ -16,9 +17,9 @@ app.use(function (req, res, next) {
 });
 
 app.use(bodyParser.json());
-app.use(`/api/${API_VERSION}/todo`, toDoRouter);
+app.use(`/api/${API_VERSION}/todo`, verifyToken, toDoRouter);
 app.use(`/api/${API_VERSION}/login`, loginRouter);
-app.use(`/api/${API_VERSION}/user`, userRouter);
+app.use(`/api/${API_VERSION}/user`, verifyToken, userRouter);
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
