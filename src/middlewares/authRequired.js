@@ -7,9 +7,9 @@ const verifyToken = (req, res, next) => {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
         try {
-        const verified = jwt.verify(bearerToken, process.env.JWT_SECRET);
-        req.user = verified;
-        next();
+            jwt.verify(bearerToken, process.env.JWT_SECRET);
+            req.user = jwt.decode(bearerToken);
+            next();
         } catch (err) {
             sendResponse(res, 401, 'Unauthorized', err);
         }
