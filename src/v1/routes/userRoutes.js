@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../../controllers/crudController');
-const userService = require('../../services/userService');
-userController.setService(userService);
+const userController = require('../../controllers/userController');
 
 
 router.get('/', userController.getAll);

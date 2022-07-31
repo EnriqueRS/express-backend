@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const toDoController = require('../../controllers/crudController');
-const toDoService = require('../../services/toDoService');
-toDoController.setService(toDoService);
+const toDoController = require('../../controllers/toDoController');
 
 router.get('/', toDoController.getAll);
 
