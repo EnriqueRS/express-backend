@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json());
 app.use(`/api/${API_VERSION}/todo`, authRequired, toDoRouter);
 app.use(`/api/${API_VERSION}/login`, loginRouter);
-app.use(`/api/${API_VERSION}/user`, authRequired, userRouter);
+app.use(`/api/${API_VERSION}/user`, userRouter);
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
