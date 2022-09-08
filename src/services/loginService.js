@@ -1,4 +1,4 @@
-const auth = require('../utils/auth');
+const auth = require('../middlewares/auth');
 const userService = require('../services/userService');
 
 async function getAccessToken (username, password) {

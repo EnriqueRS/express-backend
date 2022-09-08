@@ -1,4 +1,4 @@
-const sendResponse = require('../utils/sendResponse');
+const sendResponse = require('../api/sendResponse');
 const toDoService = require('../services/toDoService');
 
 const getAll = (req, res) => {

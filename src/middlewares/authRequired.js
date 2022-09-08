@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const sendResponse = require('../utils/sendResponse');
+const sendResponse = require('../api/sendResponse');
 
 const verifyToken = (req, res, next) => {
     const bearerHeader = req.headers['authorization'];

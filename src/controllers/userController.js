@@ -1,4 +1,4 @@
-const sendResponse = require('../utils/sendResponse');
+const sendResponse = require('../api/sendResponse');
 const userService = require('../services/userService');
 
 const getAll = (req, res) => {
