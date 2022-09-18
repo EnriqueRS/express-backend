@@ -5,6 +5,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 var toDoSchema = new Schema({
     title: String,
+    type: String,
     date: Date,
     done: Boolean
 });

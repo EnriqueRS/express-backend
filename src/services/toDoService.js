@@ -15,6 +15,7 @@ async function getById (toDoId) {
 async function create (request) {
     if( request == null ||
         request.title == null || 
+        request.type == null ||
         request.date == null || 
         request.done == null ) {
             throw new Error('Invalid request');
@@ -22,6 +23,7 @@ async function create (request) {
 
     const newToDo = {
         title: request.title,
+        type: request.type, 
         date: request.date,
         done: request.done
     };
@@ -30,14 +32,17 @@ async function create (request) {
 
 async function update (toDoId, req) {
     let toDo = await getById(toDoId);
-    if( req.title != toDo.title ) {
-        toDo.title = req.title;
+    if( req.title !== toDo.title ) {
+        toDo.title == req.title;
     }
-    if( req.date != toDo.date ) {
-        toDo.date = req.date;
+    if( req.type !== toDo.type ) {
+        toDo.type == req.type;
     }
-    if( req.done != toDo.done ) {
-        toDo.done = req.done;
+    if( req.date !== toDo.date ) {
+        toDo.date == req.date;
+    }
+    if( req.done !== toDo.done ) {
+        toDo.done == req.done;
     }
     return await ToDo.updateOne({'id': toDo.id}, {$set: toDo});
 }
