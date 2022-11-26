@@ -8,7 +8,7 @@ router.get('/:id', toDoController.getById);
 
 router.post('/', toDoController.create);
 
-router.patch('/:id', toDoController.update);
+router.post('/:id', toDoController.update);
 
 router.delete('/:id', toDoController.deleteById);
 
