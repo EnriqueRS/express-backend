@@ -18,9 +18,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', (req, res) => {
-    res.send('Hello World!')
-})
 app.use(bodyParser.json())
 app.use(`/api/${API_VERSION}/todo`, authRequired, toDoRouter);
 app.use(`/api/${API_VERSION}/login`, loginRouter);
