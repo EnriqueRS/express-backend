@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const { default: mongoose } = require('mongoose');
 
 const API_VERSION = process.env.API_VERSION || 'v1'
-const authRequired = require('./middlewares/authRequired');
+const authRequired = require('./middleware/authRequired');
 const toDoRouter = require(`./${API_VERSION}/routes/toDoRoutes`);
 const loginRouter = require(`./${API_VERSION}/routes/loginRoutes`);
 const userRouter = require(`./${API_VERSION}/routes/userRoutes`);
