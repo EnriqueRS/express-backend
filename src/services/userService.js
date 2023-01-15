@@ -1,5 +1,5 @@
 const User = require('../model/User');
-const auth = require('../middlewares/auth');
+const auth = require('../middleware/auth');
 
 async function getAll () {
     return await User.find({});
